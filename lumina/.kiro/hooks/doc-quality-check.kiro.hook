@@ -1,0 +1,17 @@
+{
+  "enabled": true,
+  "name": "Documentation Quality Check",
+  "description": "Reviews documentation files to ensure they meet technical rigor standards: architectural depth, clear AI justification, privacy-first emphasis, and professional hackathon-ready tone",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "*.md",
+      "*.MD"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Review this documentation file as an expert AI systems architect. Ensure it has: technical rigor (no generic descriptions), architectural depth with design tradeoffs, clear AI usage justification, privacy-first local architecture emphasis, structured markdown formatting, and professional hackathon-ready tone. Suggest specific improvements if needed."
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "enabled": true,
+  "name": "Markdown Format Check",
+  "description": "Validates markdown files for proper heading hierarchy, bullet formatting, avoids repetition, and ensures GitHub-ready formatting",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "*.md"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Review this markdown file and ensure: 1) Proper heading hierarchy (h1 -> h2 -> h3, no skipping levels), 2) Correct bullet formatting (consistent use of -, *, or +), 3) No repetitive content, 4) GitHub-ready formatting (code blocks with language tags, proper link syntax). Fix any issues found."
+  }
+}
