@@ -282,9 +282,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📧 Contact
 
-- GitHub: [@yourusername](https://github.com/yourusername)
-- Email: your.email@example.com
-- Twitter: [@yourhandle](https://twitter.com/yourhandle)
+- GitHub: [@Ritesh-Root](https://github.com/Ritesh-Root)
+- Email: riteshmahatowork@gmail.com
 
 ---
 
