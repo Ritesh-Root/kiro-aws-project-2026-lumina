@@ -7,7 +7,7 @@ interface Props {
 
 export default function VoiceInterface({ onFrustrationChange }: Props) {
   const [isListening, setIsListening] = useState(false);
-  const [transcript, setTranscript] = useState('');
+  const [transcript] = useState('');
 
   const toggleListening = () => {
     if (!('webkitSpeechRecognition' in window)) {

@@ -13,8 +13,10 @@ function App() {
   return (
     <div className="app">
       <header className="app-header">
-        <h1>🌟 Lumina</h1>
-        <p>Your Compassionate Coding Companion</p>
+        <div className="app-header-left">
+          <h1>🌟 Lumina</h1>
+          <p>Your Compassionate Coding Companion</p>
+        </div>
         <FrustrationMeter level={frustrationLevel} />
       </header>
 
