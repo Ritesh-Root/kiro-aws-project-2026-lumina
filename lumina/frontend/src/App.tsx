@@ -18,6 +18,7 @@ function App() {
   const [showConfetti, setShowConfetti] = useState(false);
   const [focusModeActive, setFocusModeActive] = useState(false);
   const [prevFrustrationLevel, setPrevFrustrationLevel] = useState(0);
+  const [highlightedLines, setHighlightedLines] = useState<number[]>([]);
 
   // Detect "Aha!" moment when frustration drops significantly
   useEffect(() => {
@@ -41,8 +42,18 @@ function App() {
     setFrustrationLevel(level);
   };
 
+  // Determine frustration level for background gradient
+  const getFrustrationClass = () => {
+    if (frustrationLevel < 0.3) return 'low';
+    if (frustrationLevel < 0.7) return 'medium';
+    return 'high';
+  };
+
   return (
-    <div className={`app ${focusModeActive ? 'focus-mode-active' : ''}`}>
+    <div
+      className={`app ${focusModeActive ? 'focus-mode-active' : ''}`}
+      data-frustration={getFrustrationClass()}
+    >
       <header className="app-header glassmorphic">
         <div className="header-content">
           <div className="title-section">
@@ -66,12 +77,19 @@ function App() {
 
       <div className="app-content">
         <div className="left-panel">
-          <CodeEditor code={code} onChange={setCode} />
+          <CodeEditor
+            code={code}
+            onChange={setCode}
+            highlightedLines={highlightedLines}
+          />
           <VoiceInterface onFrustrationChange={handleFrustrationChange} />
         </div>
 
         <div className="right-panel">
-          <VisualizationPanel code={code} />
+          <VisualizationPanel
+            code={code}
+            onNodeClick={(lineNumbers) => setHighlightedLines(lineNumbers)}
+          />
           <PedagogyPanel
             code={code}
             frustrationLevel={frustrationLevel}
