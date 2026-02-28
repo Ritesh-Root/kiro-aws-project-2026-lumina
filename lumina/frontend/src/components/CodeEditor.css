@@ -1,32 +1,79 @@
 .code-editor {
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background: rgba(20, 20, 28, 0.9);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(102, 126, 234, 0.3);
   overflow: hidden;
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+}
+
+.code-editor:hover {
+  border-color: rgba(102, 126, 234, 0.5);
+  box-shadow: 0 8px 32px rgba(102, 126, 234, 0.2);
 }
 
 .editor-header {
-  background: #f5f5f5;
+  background: rgba(30, 30, 40, 0.8);
   padding: 0.75rem 1rem;
-  border-bottom: 1px solid #ddd;
-  font-weight: 600;
+  border-bottom: 1px solid rgba(102, 126, 234, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.editor-header::before {
+  content: '';
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.editor-header::before {
+  content: '● ● ●';
+  font-size: 12px;
+  letter-spacing: 3px;
+  background: linear-gradient(90deg, #ff5f56, #ffbd2e, #27c93f);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.editor-header span {
+  color: #a0a0a0;
+  font-size: 0.85rem;
+  font-weight: 500;
+  font-family: 'Inter', sans-serif;
 }
 
 .editor-container {
   display: flex;
-  height: 400px;
+  flex: 1;
+  min-height: 0;
+  position: relative;
 }
 
 .line-numbers {
-  background: #f8f8f8;
-  padding: 1rem 0.5rem;
+  background: rgba(15, 15, 20, 0.5);
+  padding: 1rem 0.75rem;
   text-align: right;
-  color: #999;
-  font-family: 'Courier New', monospace;
-  font-size: 14px;
+  color: #555;
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  font-size: 13px;
   user-select: none;
-  border-right: 1px solid #ddd;
+  border-right: 1px solid rgba(102, 126, 234, 0.15);
+  line-height: 1.6;
+}
+
+.line-numbers div {
+  transition: color 0.2s ease;
+}
+
+.line-numbers div:hover {
+  color: #667eea;
 }
 
 .code-input {
@@ -34,8 +81,20 @@
   padding: 1rem;
   border: none;
   outline: none;
-  font-family: 'Courier New', monospace;
-  font-size: 14px;
-  line-height: 1.5;
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  font-size: 13px;
+  line-height: 1.6;
   resize: none;
+  background: transparent;
+  color: #e0e0e0;
+  caret-color: #00f2fe;
+}
+
+.code-input::selection {
+  background: rgba(102, 126, 234, 0.4);
+}
+
+.code-input::placeholder {
+  color: #555;
+  font-style: italic;
 }
