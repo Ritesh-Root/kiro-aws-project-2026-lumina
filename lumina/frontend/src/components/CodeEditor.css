@@ -1,32 +1,44 @@
 .code-editor {
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   overflow: hidden;
   flex: 1;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.code-editor:hover {
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.5), 0 0 20px rgba(102, 126, 234, 0.3);
 }
 
 .editor-header {
-  background: #f5f5f5;
+  background: rgba(255, 255, 255, 0.15);
   padding: 0.75rem 1rem;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   font-weight: 600;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .editor-container {
   display: flex;
   height: 400px;
+  position: relative;
 }
 
 .line-numbers {
-  background: #f8f8f8;
+  background: rgba(255, 255, 255, 0.05);
   padding: 1rem 0.5rem;
   text-align: right;
-  color: #999;
+  color: rgba(255, 255, 255, 0.7);
   font-family: 'Courier New', monospace;
   font-size: 14px;
   user-select: none;
-  border-right: 1px solid #ddd;
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .code-input {
@@ -38,4 +50,58 @@
   font-size: 14px;
   line-height: 1.5;
   resize: none;
+  background: rgba(255, 255, 255, 0.05);
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.code-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.code-input:focus {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Highlighted line for two-way binding */
+.code-input.highlight-line {
+  background: rgba(255, 215, 0, 0.2);
+  animation: line-pulse 1s ease-in-out;
+}
+
+@keyframes line-pulse {
+  0%, 100% {
+    background: rgba(255, 215, 0, 0.1);
+  }
+  50% {
+    background: rgba(255, 215, 0, 0.3);
+  }
+}
+
+/* Shockwave effect container */
+.code-editor.shockwave-active::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border: 2px solid rgba(0, 255, 255, 0.8);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  animation: shockwave-pulse 1s ease-out;
+}
+
+@keyframes shockwave-pulse {
+  0% {
+    width: 20px;
+    height: 20px;
+    opacity: 1;
+  }
+  100% {
+    width: 600px;
+    height: 600px;
+    opacity: 0;
+  }
 }

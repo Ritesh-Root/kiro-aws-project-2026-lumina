@@ -5,12 +5,18 @@ import './PedagogyPanel.css';
 interface Props {
   code: string;
   frustrationLevel: number;
+  onThinkingChange?: (isThinking: boolean) => void;
 }
 
-export default function PedagogyPanel({ code, frustrationLevel }: Props) {
+export default function PedagogyPanel({ code, frustrationLevel, onThinkingChange }: Props) {
   const [response, setResponse] = useState<any>(null);
   const [userInput, setUserInput] = useState('');
   const [loading, setLoading] = useState(false);
+  const [isCodeFix, setIsCodeFix] = useState(false);
+
+  useEffect(() => {
+    onThinkingChange?.(loading);
+  }, [loading, onThinkingChange]);
 
   const handleAsk = async () => {
     if (!userInput.trim()) return;
@@ -22,6 +28,11 @@ export default function PedagogyPanel({ code, frustrationLevel }: Props) {
         userInput,
         sentiment: { frustrationLevel: frustrationLevel > 0.6 ? 'high' : 'low' }
       });
+
+      // Detect if response contains code fix
+      const containsCode = res.data.content?.includes('```') || res.data.content?.includes('function') || res.data.content?.includes('const');
+      setIsCodeFix(containsCode);
+
       setResponse(res.data);
       setUserInput('');
     } catch (err) {
@@ -37,8 +48,19 @@ export default function PedagogyPanel({ code, frustrationLevel }: Props) {
         <span>🧠 Lumina's Guidance</span>
       </div>
       <div className="panel-content">
+        {loading && (
+          <div className="thinking-indicator">
+            <span>Lumina is thinking</span>
+            <div className="thinking-dots">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+        )}
+
         {response && (
-          <div className="response">
+          <div className={`response ${isCodeFix ? 'code-fix' : ''}`}>
             <div className={`response-type ${response.type}`}>
               {response.type}
             </div>
@@ -55,7 +77,7 @@ export default function PedagogyPanel({ code, frustrationLevel }: Props) {
             )}
           </div>
         )}
-        
+
         <div className="input-area">
           <input
             type="text"
