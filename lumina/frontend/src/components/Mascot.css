@@ -1,0 +1,330 @@
+.mascot-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.mascot-body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 120px;
+  transition: transform 0.3s ease;
+}
+
+.mascot-body:hover {
+  transform: scale(1.05);
+}
+
+.mascot-head {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+  z-index: 2;
+}
+
+.antenna {
+  position: absolute;
+  top: -20px;
+  width: 3px;
+  height: 20px;
+  background: #764ba2;
+  border-radius: 2px;
+}
+
+.antenna-ball {
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 10px;
+  height: 10px;
+  background: #ff6b9d;
+  border-radius: 50%;
+  animation: antenna-pulse 2s ease-in-out infinite;
+}
+
+@keyframes antenna-pulse {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(255, 107, 157, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 15px rgba(255, 107, 157, 0.8);
+  }
+}
+
+.mascot-eyes {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 5px;
+  position: relative;
+  z-index: 3;
+}
+
+.mascot-eyes.dizzy {
+  animation: head-shake 0.5s ease-in-out infinite;
+}
+
+@keyframes head-shake {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-5deg); }
+  75% { transform: rotate(5deg); }
+}
+
+.eye {
+  font-size: 1.5rem;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.mascot-eyes.starry .eye {
+  animation: starry-eyes 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes starry-eyes {
+  0% { transform: scale(1) rotate(0deg); }
+  100% { transform: scale(1.2) rotate(15deg); }
+}
+
+.mascot-mouth {
+  font-size: 1.2rem;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Sweat drops for frustrated state */
+.sweat-drop {
+  position: absolute;
+  top: 20px;
+  right: 10px;
+  width: 12px;
+  height: 16px;
+  background: linear-gradient(135deg, #a8d8ff 0%, #7fb3ff 100%);
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(45deg);
+  animation: sweat-fall 1.5s ease-in-out infinite;
+  opacity: 0;
+}
+
+.sweat-drop.delay-1 {
+  right: 20px;
+  animation-delay: 0.5s;
+}
+
+@keyframes sweat-fall {
+  0% {
+    opacity: 0;
+    top: 20px;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    top: 60px;
+  }
+}
+
+/* Aha moment glow aura */
+.glow-aura {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle, rgba(255, 215, 0, 0.6) 0%, rgba(255, 215, 0, 0) 70%);
+  border-radius: 50%;
+  animation: glow-pulse 1s ease-in-out infinite;
+  z-index: 1;
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.3);
+    opacity: 0.3;
+  }
+}
+
+/* Visor glasses for thinking state */
+.visor-glasses {
+  position: absolute;
+  top: 30px;
+  left: 15px;
+  width: 50px;
+  height: 15px;
+  background: linear-gradient(135deg, rgba(0, 255, 255, 0.6) 0%, rgba(0, 200, 255, 0.6) 100%);
+  border-radius: 5px;
+  border: 2px solid rgba(0, 255, 255, 0.8);
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+  animation: visor-scan 2s linear infinite;
+}
+
+@keyframes visor-scan {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(0, 255, 255, 1);
+  }
+}
+
+/* Holographic keyboard */
+.holographic-keyboard {
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%) scale(0.8);
+  width: 60px;
+  height: 25px;
+  background: linear-gradient(135deg, rgba(138, 43, 226, 0.3) 0%, rgba(75, 0, 130, 0.3) 100%);
+  border: 1px solid rgba(138, 43, 226, 0.6);
+  border-radius: 3px;
+  opacity: 0;
+  animation: keyboard-typing 0.8s ease-in-out infinite;
+}
+
+@keyframes keyboard-typing {
+  0%, 100% {
+    opacity: 0;
+    transform: translateX(-50%) scale(0.8) translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(-50%) scale(0.9) translateY(-5px);
+  }
+}
+
+.mascot-torso {
+  position: relative;
+  width: 60px;
+  height: 50px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 0 0 30px 30px;
+  margin-top: -10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.chest-light {
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.3) 70%);
+  border-radius: 50%;
+  animation: chest-pulse 2s ease-in-out infinite;
+}
+
+@keyframes chest-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+}
+
+/* Combo streak indicator */
+.combo-streak {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  background: linear-gradient(135deg, rgba(255, 107, 0, 0.2) 0%, rgba(255, 69, 0, 0.2) 100%);
+  border: 2px solid rgba(255, 107, 0, 0.6);
+  border-radius: 20px;
+  animation: streak-glow 1s ease-in-out infinite;
+}
+
+.fire-icon {
+  font-size: 1.2rem;
+  animation: fire-flicker 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes fire-flicker {
+  0% {
+    transform: scale(1) rotate(-5deg);
+  }
+  100% {
+    transform: scale(1.1) rotate(5deg);
+  }
+}
+
+.streak-count {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #ff6b00;
+  text-shadow: 0 0 5px rgba(255, 107, 0, 0.5);
+}
+
+@keyframes streak-glow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(255, 107, 0, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 15px rgba(255, 107, 0, 0.8);
+  }
+}
+
+/* Emotion-specific body animations */
+.emotion-stuck {
+  animation: body-wobble 1s ease-in-out infinite;
+}
+
+@keyframes body-wobble {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-2deg);
+  }
+  75% {
+    transform: rotate(2deg);
+  }
+}
+
+.emotion-aha {
+  animation: body-bounce 0.5s ease-in-out 3;
+}
+
+@keyframes body-bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.emotion-thinking .mascot-head {
+  animation: thinking-tilt 3s ease-in-out infinite;
+}
+
+@keyframes thinking-tilt {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-5deg);
+  }
+}

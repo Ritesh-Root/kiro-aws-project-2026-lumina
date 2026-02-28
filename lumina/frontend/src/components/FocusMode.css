@@ -1,0 +1,113 @@
+.focus-mode-toggle {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 999;
+}
+
+.focus-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.9) 0%, rgba(118, 75, 162, 0.9) 100%);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 25px;
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.focus-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+}
+
+.focus-button.active {
+  background: linear-gradient(135deg, rgba(118, 75, 162, 0.95) 0%, rgba(76, 52, 107, 0.95) 100%);
+  border-color: rgba(255, 255, 255, 0.6);
+  box-shadow: 0 0 30px rgba(118, 75, 162, 0.8);
+  animation: focus-pulse 2s ease-in-out infinite;
+}
+
+@keyframes focus-pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(118, 75, 162, 0.6);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(118, 75, 162, 1);
+  }
+}
+
+.focus-icon {
+  font-size: 1.2rem;
+  animation: icon-rotate 3s ease-in-out infinite;
+}
+
+.focus-button.active .focus-icon {
+  animation: icon-glow 1s ease-in-out infinite alternate;
+}
+
+@keyframes icon-rotate {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(10deg);
+  }
+}
+
+@keyframes icon-glow {
+  0% {
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+  }
+  100% {
+    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 1));
+  }
+}
+
+.focus-label {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Global focus mode overlay */
+.focus-mode-active .app-content > *:not(.left-panel) {
+  opacity: 0.2;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+.focus-mode-active .code-editor {
+  position: relative;
+  z-index: 100;
+  box-shadow: 0 0 50px rgba(102, 126, 234, 0.8), 0 0 100px rgba(102, 126, 234, 0.4);
+}
+
+.focus-mode-active .code-editor::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  right: -20px;
+  bottom: -20px;
+  background: radial-gradient(ellipse at center, rgba(102, 126, 234, 0.2) 0%, transparent 70%);
+  border-radius: 20px;
+  z-index: -1;
+  animation: spotlight-pulse 3s ease-in-out infinite;
+}
+
+@keyframes spotlight-pulse {
+  0%, 100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
